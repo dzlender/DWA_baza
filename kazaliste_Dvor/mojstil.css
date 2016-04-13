@@ -1,0 +1,150 @@
+#header {
+	min-width: 100%;
+	height: 110px;
+}
+
+body {
+	background-color: SeaShell;
+	width: 100%;
+	margin-top: 0px;
+	margin-left: 0px;
+}
+
+li {
+	display: inline;
+	background-color: OliveDrab;
+	padding: 10px 40px 10px;
+	border-radius: 10px;
+	font-size: 20px;
+}
+
+ul {
+	margin: 20px auto;
+	text-align: center;
+}
+
+ul a:link {
+	text-decoration: none;
+	color: white;
+	margin: 20px;
+}
+
+li:hover {
+	background-color: #ccff99;
+	color: OliveDrab;
+}
+
+a:visited {
+	color: white;
+}
+
+#welcome {
+	font-size: 36px;
+	margin-top: 300px;
+	text-align: center;
+}
+
+.koso {
+	text-align: center;
+	margin-top: 50px;
+	font-size: 24px;
+	font-style: italic;
+}
+
+#onama {
+	text-align: center;
+	font-size: 24px;
+	margin-top: 30px;
+	font-style: normal;
+}
+
+#map {
+	width: 500px;
+	height: 350px;
+	background-color: #ccc;
+	margin: 0px auto;
+
+}
+
+.izborJezika {
+	background-color: SeaShell;
+	position :absolute;
+	margin-bottom: 0px;
+	margin-left: 5%;
+}
+
+.datum, .predstava, .cijena {
+	float: left;
+	width: 33.33%;
+	height: 100%;
+	text-align: center;
+	font-size:28px;
+}
+
+.datum div, .predstava div, .cijena div {
+	margin-top: 90px;
+}
+
+.predstava div a {
+	text-decoration: none;
+}
+
+.predstava div a:visited {
+	text-decoration: none;
+	color: blue;
+}
+
+.glavni {
+	margin: 100px auto 20px;
+	width: 600px;
+	text-align: center;
+	font-size: 24px;
+}
+
+.glavni p {
+	font-size: 19px;
+}
+
+.pomocni {
+	width: 600px;
+	margin: 0 auto;
+}
+
+
+.donjiLijevi {
+	float: left;
+	width: 250px;
+	font-size: 19px;
+	margin-bottom: 30px;
+}
+
+.donjiDesni {
+	float:right;
+	width: 250px;
+	font-size: 19px;
+	margin-bottom: 30px;
+}
+
+.glavni2 {
+	margin: 100px 50px 20px;
+	width: 100%;
+}
+
+.pomocni2 {
+	float: left;
+	width: 50%;
+	font-size: 19px;
+	margin: 0 auto;
+	width: 40%;
+	margin-left: 100px;
+	line-height: 40px;
+}
+
+.pomocni2 p {
+	width: 80%;
+}
+
+.vijest {
+	font-size: 24px;
+}
+
