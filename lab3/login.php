@@ -42,15 +42,19 @@
 				var podstring=document.getElementsByName("trazi")[0].value;
 				var proizvodi=document.getElementsByTagName("tr");
 				var polje=[];
-				var proizvod;			
+				var proizvod;		
 	 			for (var i=0; i<proizvodi.length; i++){
 					polje[i]=proizvodi[i];
 					proizvod=polje[i].innerHTML;	
 	 				if(proizvod.indexOf(podstring) == -1){
 	 					proizvodi[i].style.display="none";
 	 				}
+	 				else{
+	 					proizvodi[i].style.display="";
+	 				}
 	 			}
 			}
-		</script>		
+		</script>
+
 	</body>
 </html>
