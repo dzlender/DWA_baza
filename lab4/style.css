@@ -1,0 +1,140 @@
+html, body{
+	height: 100%;
+	background-color: #55AA55;
+}
+
+.ispunjeno{
+	height: 100%;
+}
+
+.lijevi{
+	float: left;
+	width: 50%;
+	height: 100%;
+}
+
+.desni{
+	float: right;
+	width: 50%;
+	height: 100%;
+}
+
+.logoMoto{
+	position: relative;
+	top: 30%;
+	left: 25%;
+}
+
+#moto{
+	font-weight: bold;
+	font-size: 28px;
+}
+
+.loginForma{
+	position: relative;
+	top: 30%;
+	font-weight: bold;
+	font-size: 28px;
+}
+
+.inputUlaz{
+	font-size: 28px;
+	width: 70%;
+	border: 3px solid black;
+	padding: 5px;
+}
+
+#ulaznaTipka{
+	visibility: hidden;
+}
+
+.logoNaslovna {
+	float: left;
+	width: 20%;
+}
+
+.loginPodaci {
+	float: right;
+	width: 75%;
+	margin-top: 105px;
+}
+
+.user {
+	float: right;
+	font-size: 28px;
+	margin-right: 20px;
+}
+
+.odjava {
+	float: right;
+	font-size: 28px;
+	padding: 5px 20px;
+	font-weight: bold;
+	border: 3px solid black;
+	cursor: pointer;
+}
+
+hr {
+	clear: both;
+}
+
+.izbornik {
+	clear: both;
+	float: left;
+	width: 20%;
+}
+
+.sadrzaj {
+	float: right;
+	width: 75%;
+}
+
+nav {
+	margin: 150px auto;
+	font-size: 24px;
+}
+
+nav ul {
+	list-style-type: none;
+}
+
+nav li {
+	margin-top: 90px;
+}
+
+article {
+	font-size: 24px;
+	text-align: center;
+	margin-right: 200px;
+}
+
+article p {
+	margin-top: 50px;
+}
+
+article h1 {
+	margin-top: 70px;
+}
+
+#traziTipka {
+	font-size: 28px;
+	padding: 5px;
+}
+
+table {
+	margin-top: 130px;
+}
+
+table, td {
+	border: 1px solid black;
+}
+
+td {
+	font-size: 24px;
+	padding: 10px;
+}
+
+.pretraga {
+	position: absolute;
+	bottom: 150px;
+}
