@@ -1,0 +1,70 @@
+html, body{
+	height: 100%;
+	background-color: rgb(243,250,254);
+}
+
+.lijevi{
+	float: left;
+	width: 50%;
+	height: 100%;
+}
+
+.desni{
+	float: right;
+	width: 50%;
+	height: 100%;
+}
+
+.logoMoto{
+	position: relative;
+	top: 18%;
+	left: 5%;
+	text-align: center;
+}
+
+#moto{
+	font-weight: normal;
+	font-style: italic;
+	font-size: 28px;
+}
+
+.loginForma{
+	position: relative;
+	top: 20%;
+	font-weight: bold;
+	font-size: 28px;
+	left: 20%;
+}
+
+.inputUlaz{
+	font-size: 28px;
+	width: 40%;
+	border: 3px solid black;
+	padding: 5px;
+}
+
+.korisnikUlaz{
+	font-size: 28px;
+}
+
+.gostForma{
+	position: relative;
+	top: 30%;
+	left: 40%;
+}
+
+.obavijestLogin{
+	font-size: 28px;
+	position: relative;
+	top: 30%;
+	left: 15%;
+}
+
+.izborJezika {
+	background-color: rgb(243,250,254);
+	position: absolute;
+	margin-bottom: 0px;
+	margin-left: 5%;
+	font-size: 20px;
+	color: rgb(46,116,181);
+}
