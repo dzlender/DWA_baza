@@ -229,7 +229,7 @@
 						</tr>
 						<tr id='prazanRed'></tr>";
 				foreach(ORM::for_table('linije')->find_result_set() as $linija) {
-   				 	echo "<tr>	<td>$linija->polazak</td>
+   				 	echo "<tr>	<td>$linija->polazak</td> 
    				 				<td>$linija->dolazak</td>
    				 				<td>$linija->prijevoznik</td>
    				 				<td id='cijene'><a href='#' onclick='brojReda(this.parentNode.parentNode)'>cijene</a></td>
@@ -267,7 +267,6 @@
 
 			function brojReda(x) {
 				var brLinije = x.rowIndex-1;
-				localStorage.setItem("linija",brLinije); 
 				window.location = "polasci_dolasci2.php?linija=" + brLinije;
 			}
 		</script>

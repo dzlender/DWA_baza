@@ -15,7 +15,7 @@
 		<link rel="stylesheet" type="text/css" href="kolodvorStil.css">
 		<header>
 			<img src="kolodvorOsijek.jpg" alt="zavjesa" id="header">
-			<form method="post" action="polasci_dolasci.php" class="izborJezika" name="izborJezika"
+			<form method="post" action="polasci_dolasci2.php?linija=<?php echo $_GET['linija']; ?>" class="izborJezika" name="izborJezika"
 					onClick="document.forms.izborJezika.submit();"> 
 				<?php
 					session_start(); 
@@ -126,14 +126,50 @@
 				</li>
 			</a>
 		</ul>
-		<br><br><br><br>
+		<br>
+			<?php 
+				$linijaBroj = $_GET['linija'];
+				$linija = ORM::for_table('linije')->where('id', $linijaBroj)->find_one();
+			 ?>
 		<div class="pretraga">
 			<?php
-				$linijaBroj = $_GET['linija'];
+				echo $linija['polazak']." - ".$linija['dolazak'].", ".$linija['prijevoznik']."<br><br><br>";
+
 				$cijeneRed = ORM::for_table('cijene_linija')->where('idLinije', $linijaBroj)->find_one();
+
+				echo "<table id='polazak_dolazak'><tr>
+   				 				<th>";
+									$row = ORM::for_table('jezik')->where('naziv', 'polazak1')->find_one();
+									if(!empty($_POST))	
+										echo $row[$_POST['jezik']];
+									else if(empty($_POST) && !isset($_SESSION['language']))
+										echo $row['hrv'];
+									else if(empty($_POST) && isset($_SESSION['language']))
+										echo $row[$_SESSION['language']];	
+   				 echo			"</th> 
+   				 				<th>";
+									$row = ORM::for_table('jezik')->where('naziv', 'dolazak1')->find_one();
+									if(!empty($_POST))	
+										echo $row[$_POST['jezik']];
+									else if(empty($_POST) && !isset($_SESSION['language']))
+										echo $row['hrv'];
+									else if(empty($_POST) && isset($_SESSION['language']))
+										echo $row[$_SESSION['language']];
+   				 echo			"</th>
+   				 			</tr>";
+				foreach(ORM::for_table('vremena_linija')->find_result_set() as $linija) {
+   				 	if($linija->idLinije == $cijeneRed->idLinije)
+   				 	echo "<tr>
+   				 				<td>$linija->vrijemePolaska</td> 
+   				 				<td>$linija->vrijemeDolaska</td>
+   				 				<td><input type='radio' name='season' value='spring'></td>
+   				 			</tr>";
+				}
+				echo "</table><br><br>";
+
 				echo 
 				"<table>
-					<tr>
+					<tr name='cijena'>
 						<td>";
 							$row = ORM::for_table('jezik')->where('naziv', 'redovnaKarta')->find_one();
 							if(!empty($_POST))	
@@ -147,10 +183,10 @@
 							echo $cijeneRed['cijena']." kn";
 				echo	"</td>	
 						<td>
-							<a id='cijene' href='#''>Kupi</a>
+							<a id='cijene' href='#' onclick='imeReda(this.parentNode.parentNode)'>Kupi</a>
 						</td>
 					</tr>
-					<tr>
+					<tr name='povratna'>
 						<td>";
 							$row = ORM::for_table('jezik')->where('naziv', 'povratnaKarta')->find_one();
 							if(!empty($_POST))	
@@ -164,10 +200,10 @@
 							echo $cijeneRed['povratna']." kn";
 				echo	"</td>
 						<td>
-							<a id='cijene' href='#''>Kupi</a>
+							<a id='cijene' href='#' onclick='imeReda(this.parentNode.parentNode)'>Kupi</a>
 						</td>
 					</tr>
-					<tr>
+					<tr name='djaci_studenti'>
 						<td>";
 							$row = ORM::for_table('jezik')->where('naziv', 'djaciStudenti')->find_one();
 							if(!empty($_POST))	
@@ -181,10 +217,10 @@
 							echo $cijeneRed['djaci_studenti']." kn";
 				echo	"</td>
 						<td>
-							<a id='cijene' href='#''>Kupi</a>
+							<a id='cijene' href='#' onclick='imeReda(this.parentNode.parentNode)'>Kupi</a>
 						</td>
 					</tr>
-					<tr>
+					<tr name='umirovljenici'>
 						<td>";
 							$row = ORM::for_table('jezik')->where('naziv', 'umirovljenici')->find_one();
 							if(!empty($_POST))	
@@ -198,10 +234,10 @@
 							echo $cijeneRed['umirovljenici']." kn";
 				echo	"</td>
 						<td>
-							<a id='cijene' href='#''>Kupi</a>
+							<a id='cijene' href='#' onclick='imeReda(this.parentNode.parentNode)'>Kupi</a>
 						</td>
 					</tr>
-					<tr>
+					<tr name='branitelji'>
 						<td>";
 							$row = ORM::for_table('jezik')->where('naziv', 'branitelji')->find_one();
 							if(!empty($_POST))	
@@ -215,10 +251,10 @@
 							echo $cijeneRed['branitelji']." kn";
 				echo	"</td>
 						<td>
-							<a id='cijene' href='#''>Kupi</a>
+							<a id='cijene' href='#' onclick='imeReda(this.parentNode.parentNode)'>Kupi</a>
 						</td>
 					</tr>
-					<tr>
+					<tr name='nezaposleni'>
 						<td>";
 							$row = ORM::for_table('jezik')->where('naziv', 'nezaposleni')->find_one();
 							if(!empty($_POST))	
@@ -232,10 +268,10 @@
 							echo $cijeneRed['nezaposleni']." kn";
 				echo	"</td>
 						<td>
-							<a id='cijene' href='#''>Kupi</a>
+							<a id='cijene' href='#' onclick='imeReda(this.parentNode.parentNode)'>Kupi</a>
 						</td>
 					</tr>
-					<tr>
+					<tr name='novinari'>
 						<td>";
 							$row = ORM::for_table('jezik')->where('naziv', 'novinari')->find_one();
 							if(!empty($_POST))	
@@ -249,10 +285,10 @@
 							echo $cijeneRed['novinari']." kn";
 				echo	"</td>
 						<td>
-							<a id='cijene' href='#''>Kupi</a>
+							<a id='cijene' href='#' onclick='imeReda(this.parentNode.parentNode)'>Kupi</a>
 						</td>
 					</tr>
-					<tr>
+					<tr name='djeca_5_do_10'>
 						<td>";
 							$row = ORM::for_table('jezik')->where('naziv', 'djeca5_10')->find_one();
 							if(!empty($_POST))	
@@ -266,10 +302,10 @@
 							echo $cijeneRed['djeca_5_do_10']." kn";
 				echo	"</td>
 						<td>
-							<a id='cijene' href='#''>Kupi</a>
+							<a id='cijene' href='#' onclick='imeReda(this.parentNode.parentNode)'>Kupi</a>
 						</td>
 					</tr>
-					<tr>
+					<tr name='djeca_do_4'>
 						<td>";
 							$row = ORM::for_table('jezik')->where('naziv', 'djecaDo4')->find_one();
 							if(!empty($_POST))	
@@ -283,11 +319,17 @@
 							echo $cijeneRed['djeca_do_4']." kn";
 				echo	"</td>
 						<td>
-							<a id='cijene' href='#''>Kupi</a>
+							<a id='cijene' href='#' onclick='imeReda(this.parentNode.parentNode)'>Kupi</a>
 						</td>
 					</tr>";
 				echo "</table>";
 			?>
 		</div>
+		<script>
+			function imeReda(x) {
+				var karta = x.getAttribute("name"); 
+				alert("Kupili ste kartu za kategoriju:\n" + karta);
+			}
+		</script>	
 	</body>
 </html>
