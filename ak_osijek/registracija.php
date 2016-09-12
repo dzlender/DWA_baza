@@ -15,7 +15,7 @@
 		<link rel="stylesheet" type="text/css" href="kolodvorStil.css">
 		<header>
 			<img src="kolodvorOsijek.jpg" alt="zavjesa" id="header">
-			<form method="post" action="polasci_dolasci.php" class="izborJezika" name="izborJezika"
+			<form method="post" action="registracija.php" class="izborJezika" name="izborJezika"
 					onClick="document.forms.izborJezika.submit();"> 
 				<?php
 					session_start(); 
@@ -58,7 +58,7 @@
 			 ?>
 		</title>
 	</head>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<body>
 		<ul>
 			<a href="naslovna.php">
@@ -127,9 +127,11 @@
 				</li>
 			</a>
 		</ul>
-		<div class="pretraga">
+		<br>
+		<div class="rega">
+			<form action="podaciReg.php" method="post">
 				<?php
-					$row = ORM::for_table('jezik')->where('naziv', 'polazak')->find_one();
+					$row = ORM::for_table('jezik')->where('naziv', 'ime')->find_one();
 					if(!empty($_POST))	
 						echo $row[$_POST['jezik']];
 					else if(empty($_POST) && !isset($_SESSION['language']))
@@ -137,21 +139,9 @@
 					else if(empty($_POST) && isset($_SESSION['language']))
 						echo $row[$_SESSION['language']];
 				 ?>
-				 <input type="text" name="polazak" class="inputLinije">
-				 &nbsp;&nbsp;
-				 <input type="text" name="dolazak" class="inputLinije">
+				 <input type="text" name="ime" class="inputLinije"><br><br>
 				<?php
-					$row = ORM::for_table('jezik')->where('naziv', 'dolazak')->find_one();
-					if(!empty($_POST))	
-						echo $row[$_POST['jezik']];
-					else if(empty($_POST) && !isset($_SESSION['language']))
-						echo $row['hrv'];
-					else if(empty($_POST) && isset($_SESSION['language']))
-						echo $row[$_SESSION['language']];
-				 ?>	
-				 <br><br>
-				<?php
-					$row = ORM::for_table('jezik')->where('naziv', 'datum')->find_one();
+					$row = ORM::for_table('jezik')->where('naziv', 'prezime')->find_one();
 					if(!empty($_POST))	
 						echo $row[$_POST['jezik']];
 					else if(empty($_POST) && !isset($_SESSION['language']))
@@ -159,145 +149,70 @@
 					else if(empty($_POST) && isset($_SESSION['language']))
 						echo $row[$_SESSION['language']];
 				 ?>
-				 <input type="date" name="datum" id="datum" class="inputLinije">
-				 &nbsp;&nbsp;&nbsp;
-				 <button type="button" name="pretraga" class="traziTipka" onClick="nadji()">
-					<?php
-						$row = ORM::for_table('jezik')->where('naziv', 'traži')->find_one();
-						if(!empty($_POST)){
+				 <input type="text" name="prezime" class="inputLinije"><br><br>
+				<?php
+					$row = ORM::for_table('jezik')->where('naziv', 'mail')->find_one();
+					if(!empty($_POST))	
+						echo $row[$_POST['jezik']];
+					else if(empty($_POST) && !isset($_SESSION['language']))
+						echo $row['hrv'];
+					else if(empty($_POST) && isset($_SESSION['language']))
+						echo $row[$_SESSION['language']];
+				 ?>
+				 <input type="text" name="mail" class="inputLinije"><br><br>
+				<?php
+					$row = ORM::for_table('jezik')->where('naziv', 'račun')->find_one();
+					if(!empty($_POST))	
+						echo $row[$_POST['jezik']];
+					else if(empty($_POST) && !isset($_SESSION['language']))
+						echo $row['hrv'];
+					else if(empty($_POST) && isset($_SESSION['language']))
+						echo $row[$_SESSION['language']];
+				 ?>
+				 <input type="text" name="racun" class="inputLinije"><br><br>
+			    <input type="submit" class="traziTipka"
+			    	<?php 
+						$row = ORM::for_table('jezik')->where('naziv', 'pošalji')->find_one();
+						if(!empty($_POST['jezik'])){
 							$tekst=$row[$_POST['jezik']];	
-							echo $tekst;
+							echo "value='$tekst'";
 						}
-						else if(empty($_POST) && !isset($_SESSION['language'])){
+						else if(empty($_POST['jezik']) && !isset($_SESSION['language'])){
 							$tekst=$row['hrv'];
-							echo $tekst;
+							echo "value='$tekst'";
 						}
-						else if(empty($_POST) && isset($_SESSION['language'])){
+						else if(empty($_POST['jezik']) && isset($_SESSION['language'])){
 							$tekst=$row[$_SESSION['language']];
-							echo $tekst; 
+							echo "value='$tekst'"; 
 						}
-					 ?>	
-				 </button>					 			
-			<br><br><br>
-			<?php
-				echo "<table>
-						<tr>
-							<th>";
-								$row = ORM::for_table('jezik')->where('naziv', 'polazak1')->find_one();
-								if(!empty($_POST)){
-									$tekst=$row[$_POST['jezik']];	
-									echo $tekst;
-								}
-								else if(empty($_POST) && !isset($_SESSION['language'])){
-									$tekst=$row['hrv'];
-									echo $tekst;
-								}
-								else if(empty($_POST) && isset($_SESSION['language'])){
-									$tekst=$row[$_SESSION['language']];
-									echo $tekst; 
-								}
-				echo		"</th>
-							<th>";
-								$row = ORM::for_table('jezik')->where('naziv', 'dolazak1')->find_one();
-								if(!empty($_POST)){
-									$tekst=$row[$_POST['jezik']];	
-									echo $tekst;
-								}
-								else if(empty($_POST) && !isset($_SESSION['language'])){
-									$tekst=$row['hrv'];
-									echo $tekst;
-								}
-								else if(empty($_POST) && isset($_SESSION['language'])){
-									$tekst=$row[$_SESSION['language']];
-									echo $tekst; 
-								}
-				echo		"</th>
-							<th>";
-								$row = ORM::for_table('jezik')->where('naziv', 'prijevoznik')->find_one();
-								if(!empty($_POST)){
-									$tekst=$row[$_POST['jezik']];	
-									echo $tekst;
-								}
-								else if(empty($_POST) && !isset($_SESSION['language'])){
-									$tekst=$row['hrv'];
-									echo $tekst;
-								}
-								else if(empty($_POST) && isset($_SESSION['language'])){
-									$tekst=$row[$_SESSION['language']];
-									echo $tekst; 
-								}
-				echo		"</th>
-						</tr>
-						<tr id='prazanRed'></tr>";
-				foreach(ORM::for_table('linije')->find_result_set() as $linija) {
-   				 	echo "<tr>	<td>$linija->polazak</td> 
-   				 				<td>$linija->dolazak</td>
-   				 				<td>$linija->prijevoznik</td>
-   				 				<td id='cijene'>
-	   				 				<a href='#' onclick='brojReda(this.parentNode.parentNode)'>";
-										$row = ORM::for_table('jezik')->where('naziv', 'cijene')->find_one();
-										if(!empty($_POST)){
-											$tekst=$row[$_POST['jezik']];	
-											echo $tekst;
-										}
-										else if(empty($_POST) && !isset($_SESSION['language'])){
-											$tekst=$row['hrv'];
-											echo $tekst;
-										}
-										else if(empty($_POST) && isset($_SESSION['language'])){
-											$tekst=$row[$_SESSION['language']];
-											echo $tekst; 
-										}	   				 					
-	   				echo			"</a>
-   				 				</td>
-   				 			</tr>";
-				}
-				echo "</table><br><br>";
-			?>
+					 ?>
+			    >
+			    <br><br><br>
+			</form>
 		</div>
-		<script>
-			function nadji() {
-				var polazak=document.getElementsByName("polazak")[0].value;
-				var dolazak=document.getElementsByName("dolazak")[0].value;
-				var linije=document.getElementsByTagName("tr");
-				var celije;
-				var tmp;
-				var datum = document.getElementById("datum").value;
-				var dobarDatum = "0";
-
-				if (document.getElementById("datum").value == "")
-					alert("Odaberite datum!");
-				else{
-					$.post( "datum.php", { datum: datum} )
-							.done(function(data) {
-								dobarDatum = data;
-
-						for (var i=2; i<linije.length; i++){
-							celije = linije[i].getElementsByTagName("td");
-							if(polazak=="" && dolazak=="" && dobarDatum=="1"){
-								linije[i].style.display="";
-							}
-							else if(celije[0].innerHTML == polazak && dolazak==""){
-								linije[i].style.display="";
-							}
-							else if(celije[1].innerHTML == dolazak && polazak==""){
-								linije[i].style.display="";
-							}
-			 				else if(celije[0].innerHTML == polazak && celije[1].innerHTML == dolazak){
-			 					linije[i].style.display="";
-			 				}
-			 				else{
-			 					linije[i].style.display="none";
-			 				}
-			 			}
-					 });				
-		 		}
-			}
-
-			function brojReda(x) {
-				var brLinije = x.rowIndex-1;
-				window.location = "polasci_dolasci2.php?linija=" + brLinije;
-			}
-		</script>
+		<div class="pretraga">
+			<p>
+				<?php
+					$row = ORM::for_table('jezik')->where('naziv', 'poruka1')->find_one();
+					if(!empty($_POST))	
+						echo $row[$_POST['jezik']];
+					else if(empty($_POST) && !isset($_SESSION['language']))
+						echo $row['hrv'];
+					else if(empty($_POST) && isset($_SESSION['language']))
+						echo $row[$_SESSION['language']];
+				 ?>
+			</p>
+			<p>
+				<?php
+					$row = ORM::for_table('jezik')->where('naziv', 'poruka2')->find_one();
+					if(!empty($_POST))	
+						echo $row[$_POST['jezik']];
+					else if(empty($_POST) && !isset($_SESSION['language']))
+						echo $row['hrv'];
+					else if(empty($_POST) && isset($_SESSION['language']))
+						echo $row[$_SESSION['language']];
+				 ?>
+			</p>
+		</div>
 	</body>
 </html>
